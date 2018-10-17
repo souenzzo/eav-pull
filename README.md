@@ -1,8 +1,12 @@
-# eavt-pull
+# eav-pull
 
 Get data from db as `eav` tuples
 
 ## Usage
+
+lein/boot: `[eav-pull "0.1.0"]`
+
+tools-deps: `eav-pull {:mvn/version "0.1.0"}`
 
 ```clojure
 (require '[eav-pull.core :as eav])
