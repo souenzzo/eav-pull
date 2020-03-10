@@ -6,7 +6,11 @@ Get data from db as `eav` tuples
 
 lein/boot: `[eav-pull "0.1.0"]`
 
-tools-deps: `eav-pull {:mvn/version "0.1.0"}`
+tools-deps:
+```clojure
+eav-pull {:git/url "https://github.com/souenzzo/eav-pull.git"
+          :sha     "494a906b32c1767ff3c71f0c1df387ac0df7a27f"}
+```
 
 ```clojure
 (require '[eav-pull.core :as eav])
