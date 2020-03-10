@@ -10,8 +10,8 @@ tools-deps: `eav-pull {:mvn/version "0.1.0"}`
 
 ```clojure
 (require '[eav-pull.core :as eav])
-;; should work in datomic client too.
-;; will work with datascript when 'or-join' is available
+;; should work in datomic-client and datascript too.
+
 (require '[datomic.api :as d])
 
 ;; tradicional pull/query:
@@ -34,5 +34,4 @@ tools-deps: `eav-pull {:mvn/version "0.1.0"}`
 ;;      [1 :user/friends 2]
 ;;      [1 :user/friends 3]
 ;;      [2 :user/friends 3]}
-
 ```

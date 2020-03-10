@@ -1,4 +1,5 @@
-(ns eav-pull.core)
+(ns eav-pull.core
+  (:require [edn-query-language.core :as eql]))
 
 #_(defn variable?
     "symbol starting with \"?\""
@@ -12,6 +13,17 @@
 
 #_(s/def ::pattern coll?)
 
+(defn normalize-ast
+  [{:keys [children current-path]
+    :or   {current-path []}}]
+  (->> (concat [{:path current-path
+                 :ks   (mapv :dispatch-key children)}]
+               (for [{:keys [dispatch-key] :as node} children
+                     :let [path (conj current-path dispatch-key)]
+                     norm-el (normalize-ast (assoc node
+                                              :current-path path))]
+                 norm-el))
+       (sort-by (comp count :path))))
 
 (defn normalize
   [path pattern]
@@ -44,7 +56,7 @@
 
 (defn ->query
   [{::keys [where find pattern]}]
-  (let [paths (normalize [] pattern)
+  (let [paths (normalize-ast (eql/query->ast pattern))
         [?e ?a ?v ?be] `[?e# ?a# ?v# ~find]]
     `{:find  ~[?e ?a ?v]
       :where [~@where

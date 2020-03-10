@@ -1,1 +1,6 @@
-{:deps {org.clojure/clojure {:mvn/version "1.9.0"}}}
+{:deps    {edn-query-language/eql {:mvn/version "0.0.9"}}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps  {com.datomic/datomic-free {:mvn/version "0.9.5697"}
+                                datascript/datascript    {:mvn/version "0.18.10"}
+                                org.clojure/clojure      {:mvn/version "1.10.1"}
+                                org.clojure/test.check   {:mvn/version "0.10.0"}}}}}

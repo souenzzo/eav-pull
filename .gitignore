@@ -3,3 +3,6 @@ target
 *.iml
 .lein-failures
 *.xml
+.nrepl-port
+.cpcache/
+*.asc
